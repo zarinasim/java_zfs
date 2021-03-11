@@ -1,4 +1,4 @@
-package ru.stqa.zfs.addressbook;
+package ru.stqa.zfs.addressbook.model;
 
 public class GroupData {
   private final String name;
