@@ -2,44 +2,33 @@ package ru.stqa.zfs.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ru.stqa.zfs.addressbook.model.ContactData;
 
-public class ContactHelper {
-
-
-  private WebDriver wd;
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
-
-    this.wd = wd;
+    super(wd);
   }
 
-  public void returnToContactPage() { wd.findElement(By.linkText("home page")).click();
+  public void returnToContactPage() {
+    click(By.linkText("home page"));
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+
+    click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void fillContactForm() {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("Masha");
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys("Ivanova");
-    wd.findElement(By.name("company")).click();
-    wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys("web");
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys("yellow street, 6");
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys("89456985");
+  public void fillContactForm(ContactData contactData) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("address"), contactData.getAddress());
+    click(By.name("theform"));
+    type(By.name("home"), contactData.getHome());
   }
 
   public void gotoContactPage() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 }
