@@ -24,11 +24,28 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
-    click(By.name("theform"));
+
     type(By.name("home"), contactData.getHome());
   }
 
   public void gotoContactPage() {
     click(By.linkText("add new"));
+  }
+
+  public void editContact() {
+    click(By.xpath("(//img[@alt='Edit'])[2]"));
+  }
+
+  public void submitContactModification() {
+    click(By.xpath("(//input[@name='update'])[2]"));
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteSelectContact() {
+    click(By.name("//input[@value='Delete']"));
+    wd.switchTo().alert().accept();
   }
 }
