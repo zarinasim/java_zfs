@@ -6,7 +6,8 @@ import ru.stqa.zfs.addressbook.model.GroupData;
 public class GroupCreationTests extends TestBase {
 
   @Test
-  public void testGroupCreation() throws Exception {
+  public void testGroupCreation() throws Exception
+  {
     app.getNavigationtHelper().gotoGroupPage();
     app.getGroupHelper().initGroupCreation();
     app.getGroupHelper().fillGroupForm(new GroupData("test11", "test11", "test12"));
