@@ -13,7 +13,7 @@ public class GroupHelper extends HelperBase {
   public void returnToGroupPage() {
     click(By.xpath("//div[@id='content']/div"));
     click(By.linkText("group page"));
-    click(By.linkText("Logout"));
+    //click(By.linkText("Logout"));
   }
 
   public void submitGroupCreation() {
@@ -36,6 +36,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGroup() {
+
     click(By.name("selected[]"));
   }
 
@@ -46,4 +47,16 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+
+  public void createGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
 }
