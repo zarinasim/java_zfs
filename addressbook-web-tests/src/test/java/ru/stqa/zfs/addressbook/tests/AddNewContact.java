@@ -6,11 +6,10 @@ import ru.stqa.zfs.addressbook.model.ContactData;
 public class AddNewContact  extends TestBase {
 
   @Test
-  public void testAddNewContact() throws Exception {
+  public void testAddNewContact()  {
     app.getContactHelper().gotoContactPage();
-    app.getContactHelper().fillContactForm(new ContactData("Masha", "Ivanova", "web", "yellow street, 6", "89456985"));
-    app.getContactHelper().submitContactCreation();
-    app.getContactHelper().returnToContactPage();
+    app.getContactHelper().fillContactForm(new ContactData("Masha", null, null, null, null));
+
   }
 
 }

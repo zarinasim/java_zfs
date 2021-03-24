@@ -1,5 +1,7 @@
 package ru.stqa.zfs.addressbook.appmanager;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,7 +25,7 @@ public class ApplicationManager {
   }
 
   public void init() {
-    String browser = BrowserType.CHROME;
+    String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
     } else  if (browser.equals(BrowserType.CHROME)) {
@@ -32,7 +34,7 @@ public class ApplicationManager {
       wd = new InternetExplorerDriver();
     }
 
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/group.php");
     groupHelper = new GroupHelper(wd);
     navigationtHelper = new NavigationtHelper(wd);
@@ -45,7 +47,7 @@ public class ApplicationManager {
   public void stop() {
     wd.quit();
   }
-/*
+
   private boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
@@ -53,7 +55,7 @@ public class ApplicationManager {
     } catch (NoSuchElementException e) {
       return false;
     }
-  }*/
+  }
 
   public GroupHelper getGroupHelper() {
     return groupHelper;

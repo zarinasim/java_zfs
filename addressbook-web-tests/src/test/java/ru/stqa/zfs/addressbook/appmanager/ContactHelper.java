@@ -12,7 +12,7 @@ public class ContactHelper extends HelperBase {
 
   public void returnToContactPage() {
     click(By.linkText("home"));
-    click(By.linkText("Logout"));
+    //click(By.linkText("Logout"));
   }
 
   public void submitContactCreation() {
@@ -25,7 +25,6 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
-
     type(By.name("home"), contactData.getHome());
   }
 
@@ -34,7 +33,9 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContact() {
-    click(By.xpath("(//img[@alt='Edit'])[2]"));
+    //click(By.xpath("(//img[@alt='Edit'])[2]"));
+    click(By.name("selected[]"));
+    click(By.xpath("//img[@alt='Edit']"));
   }
 
   public void submitContactModification() {
@@ -48,5 +49,16 @@ public class ContactHelper extends HelperBase {
   public void deleteSelectContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(ContactData contact) {
+    gotoContactPage();
+    fillContactForm(contact);
+    submitContactCreation();
+    returnToContactPage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
