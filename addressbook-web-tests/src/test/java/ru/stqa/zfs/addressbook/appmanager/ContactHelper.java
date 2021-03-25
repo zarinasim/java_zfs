@@ -32,9 +32,10 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void editContact() {
-    //click(By.xpath("(//img[@alt='Edit'])[2]"));
-    click(By.name("selected[]"));
+  public void editContact(int index) {
+    ///click(By.xpath("(//img[@alt='Edit'])[2]"));
+    wd.findElements(By.name("selected[]")).get(index).click();
+    //click(By.name("selected[]"));
     click(By.xpath("//img[@alt='Edit']"));
   }
 
@@ -42,8 +43,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+    //click(By.name("selected[]"));
   }
 
   public void deleteSelectContact() {
