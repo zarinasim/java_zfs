@@ -50,6 +50,7 @@ public class ContactHelper extends HelperBase {
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
     //click(By.name("selected[]"));
+
   }
 
   public void deleteSelectContact() {
@@ -65,7 +66,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public boolean isThereAContact() {
-    return !isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("selected[]"));
   }
 
   public int getContactCount() {
@@ -74,7 +75,7 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr.odd"));
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
     for (WebElement element : elements) {
       String firstname = element.getText();
       ContactData contact = new ContactData(firstname, null, null, null, null);
