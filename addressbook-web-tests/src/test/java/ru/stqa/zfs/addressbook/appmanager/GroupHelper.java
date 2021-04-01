@@ -8,6 +8,8 @@ import ru.stqa.zfs.addressbook.model.GroupData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.openqa.selenium.By.*;
+
 public class GroupHelper extends HelperBase {
 
   public GroupHelper(WebDriver wd) {
@@ -15,41 +17,41 @@ public class GroupHelper extends HelperBase {
   }
 
   public void returnToGroupPage() {
-    click(By.xpath("//div[@id='content']/div"));
-    click(By.linkText("group page"));
+    click(xpath("//div[@id='content']/div"));
+    click(linkText("group page"));
     //click(By.linkText("Logout"));
   }
 
   public void submitGroupCreation() {
 
-    click(By.name("submit"));
+    click(name("submit"));
   }
 
   public void fillGroupForm(GroupData groupData) {
-    type(By.name("group_name"), groupData.getName());
-    type(By.name("group_header"), groupData.getHeader());
-    type(By.name("group_footer"), groupData.getFooter());
+    type(name("group_name"), groupData.getName());
+    type(name("group_header"), groupData.getHeader());
+    type(name("group_footer"), groupData.getFooter());
   }
 
   public void initGroupCreation() {
-    click(By.name("new"));
+    click(name("new"));
   }
 
   public void deleteSelectGroups() {
-    click(By.name("delete"));
+    click(name("delete"));
   }
 
   public void selectGroup(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+    wd.findElements(name("selected[]")).get(index).click();
     //click(By.name("selected[]"));
   }
 
   public void initGroupModification() {
-    click(By.name("edit"));
+    click(name("edit"));
   }
 
   public void submitGroupModification() {
-    click(By.name("update"));
+    click(name("update"));
   }
 
   public void createGroup(GroupData group) {
@@ -60,19 +62,20 @@ public class GroupHelper extends HelperBase {
   }
 
   public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
+    return isElementPresent(name("selected[]"));
   }
 
   public int getGroupCount() {
-    return wd.findElements (By.name("selected[]")).size();
+    return wd.findElements (name("selected[]")).size();
   }
 
   public List<GroupData> getGroupList() {
     List<GroupData> groups = new ArrayList<GroupData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    List<WebElement> elements = wd.findElements(cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
-      GroupData group = new GroupData(name,null,null);
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      GroupData group = new GroupData(id, name,null,null);
       groups.add(group);
     }
     return groups;
